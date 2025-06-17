@@ -1,0 +1,46 @@
+name: Validate PR Naming Rules
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate-branch-and-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Branch and Commits
+        run: |
+          echo "PR branch name: ${{ github.head_ref }}"
+
+          # Check if branch name starts with feat
+          if [[ "${{ github.head_ref }}" == feat* ]]; then
+            echo "Branch starts with 'feat'. Checking commit messages..."
+
+            # Get list of commit messages in the PR
+            commits=$(gh pr view ${{ github.event.pull_request.number }} --json commits -q ".commits[].message")
+
+            # Loop through commits and check
+            failed=0
+            while read -r commit; do
+              echo "Checking commit: $commit"
+              if [[ ! $commit == feat* ]]; then
+                echo "::error::Commit does not start with 'feat': $commit"
+                failed=1
+              fi
+            done <<< "$commits"
+
+            if [[ $failed -eq 1 ]]; then
+              echo "One or more commits are invalid."
+              exit 1
+            else
+              echo "All commits are valid."
+            fi
+          else
+            echo "Branch does not start with 'feat', skipping commit checks."
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
