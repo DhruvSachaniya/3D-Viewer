@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { PersistGate } from "redux-persist/integration/react";
 import AppRoutes from "./App";
 import { createRoot } from "react-dom/client";
+import "../App.css";
 
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
