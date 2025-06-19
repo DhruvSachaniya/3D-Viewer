@@ -1,4 +1,13 @@
 .body {
   margin: 0;
-  background-color: blackx;
+  background-color: black;
+}
+
+.admin-layout {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  background-color: #2a2b2e;
+  color: white;
+  padding: 15px;
 }
