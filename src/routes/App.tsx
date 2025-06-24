@@ -9,7 +9,10 @@ const AppRoutes: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<FirstPreview />} />
+        <Route
+          path="/"
+          element={<AdminLayout children={<FirstPreview />}></AdminLayout>}
+        />
         <Route path="*" element={<NoRoutePage />} />
         <Route
           path="/model"
