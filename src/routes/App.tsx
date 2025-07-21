@@ -4,6 +4,7 @@ import NoRoutePage from "./NoRoutes";
 import ModelView from "../components/model";
 import AdminLayout from "../components/AdminLayout";
 import "../App.css";
+import ThreeDMModel from "../components/model/3DM";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -17,6 +18,10 @@ const AppRoutes: React.FC = () => {
         <Route
           path="/model"
           element={<AdminLayout children={<ModelView />}></AdminLayout>}
+        />
+        <Route
+          path="/3DM"
+          element={<AdminLayout children={<ThreeDMModel />} />}
         />
         <Route path="/admin" element={<AdminLayout />} />
       </Routes>

@@ -35,6 +35,7 @@ body {
 
 .admin-layout {
   display: flex;
+  position: sticky;
   flex-direction: row !important;
   justify-content: space-between;
   background-color: #2a2b2e;

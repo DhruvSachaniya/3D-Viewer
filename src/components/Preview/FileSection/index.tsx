@@ -1,6 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const FileUploadSection = () => {
+  const navigate = useNavigate();
   return (
     <Stack
       sx={{
@@ -40,6 +42,21 @@ const FileUploadSection = () => {
           margin: "10px 0",
         }}
       />
+      {/* Sample File Example */}
+      <Box
+        sx={{
+          borderRadius: "4px",
+          border: "1px solid #3d3e42",
+          padding: "10px",
+          ":hover": {
+            cursor: "pointer",
+            backgroundColor: "#3d3e42",
+          },
+        }}
+        onClick={() => navigate("/3DM")}
+      >
+        3DM
+      </Box>
     </Stack>
   );
 };
